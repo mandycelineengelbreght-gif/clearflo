@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ClearFlo Plumbing | Cape Town's Trusted Plumbers</title>
+  <meta name="description" content="ClearFlo Plumbing — licensed plumbers serving Cape Town. 24/7 emergencies, free quotes, 30-minute response. PIRB registered."/>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- ═══ HEADER ═══ -->
+  <header id="header">
+    <div class="container nav-wrap">
+
+      <!-- Logo -->
+      <a href="#hero" class="logo">
+        <img src="assets/clearflo (2).png" alt="Logo" class="custom-logo"/>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="nav-links" id="navLinks">
+        <a href="#services">Services</a>
+        <a href="#areas">Areas</a>
+        <a href="#trust">Trust</a>
+        <a href="#contact">Contact</a>
+        <a href="#quote" class="btn-quote">Get a Quote</a>
+        <a href="tel:+27772517253" class="btn-emergency"><i class="fas fa-phone"></i> Emergency</a>
+      </nav>
+
+      <!-- Burger -->
+      <button class="burger" id="burger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#services">Services</a>
+      <a href="#areas">Areas</a>
+      <a href="#trust">Trust</a>
+      <a href="#contact">Contact</a>
+      <a href="#quote" class="mob-quote-btn">Get a Quote</a>
+    </div>
+  </header>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero" id="hero">
+    <!-- Background image upload overlay -->
+    <div class="hero-bg" id="heroBg" style="background-image: url(assets/water.png); background-size: cover; background-position: center;"></div>
+      <div class="hero-bg-overlay"></div>
+    </div>
+
+    <div class="container hero-grid">
+
+      <!-- LEFT -->
+      <div class="hero-left">
+
+      
+        <!-- Headline -->
+        <h1>
+          <span class="h1-white">Cape Town's</span><br>
+          <span class="h1-navy">Most Trusted</span><br>
+          <span class="h1-white">Plumbers.</span>
+        </h1>
+
+        <!-- Sub -->
+        <p class="hero-sub">Licensed, PIRB-registered plumbers who show up fast, quote honestly and fix it right the first time.</p>
+
+        <!-- Stats -->
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-n" data-target="20" data-suffix="+">0+</div>
+            <div class="stat-l">Years Experience</div>
+          </div>
+          <div class="stat-sep"></div>
+          <div class="stat">
+            <div class="stat-n" data-target="2000" data-suffix="+">0+</div>
+            <div class="stat-l">Jobs Completed</div>
+          </div>
+          <div class="stat-sep"></div>
+          <div class="stat">
+            <div class="stat-n" data-target="4.9" data-suffix="★">0★</div>
+            <div class="stat-l">Google Rating</div>
+          </div>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="hero-ctas">
+          <a href="https://wa.me/27772517253" class="btn-wa" target="_blank">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+          <a href="tel:+27772517253" class="btn-call">
+            <i class="fas fa-phone"></i> Call Now
+          </a>
+        </div>
+      </div>
+
+      <!-- RIGHT — Price Estimator -->
+      <div class="hero-right">
+        <div class="calc-card">
+          <div class="calc-head">
+            <div class="calc-icon">
+            <img src="assets/icons8-calculator-50.png" alt="icon" style="width:34px; height:34px; object-fit:contain;"/></div>
+            <div>
+              <h3>Instant Price Estimate</h3>
+              <p>Get a ballpark in 30 seconds — free, no obligation.</p>
+            </div>
+          </div>
+
+          <div class="calc-field">
+            <label>Type of job</label>
+            <select id="jobType">
+              <option value="">— Select a service —</option>
+              <option value="geyser_repair">Geyser Repair</option>
+              <option value="geyser_replace">Geyser Replacement</option>
+              <option value="burst_pipe">Burst / Leaking Pipe</option>
+              <option value="blocked_drain">Blocked Drain</option>
+              <option value="blocked_toilet">Blocked Toilet</option>
+              <option value="leak_detect">Leak Detection</option>
+              <option value="tap_repair">Tap / Fixture Repair</option>
+              <option value="toilet_repair">Toilet Repair</option>
+              <option value="installation">New Installation</option>
+              <option value="commercial">Commercial Job</option>
+            </select>
+          </div>
+
+          <div class="calc-row-2">
+            <div class="calc-field">
+              <label>Property type</label>
+              <div class="tog-grp">
+                <button class="tog active" data-group="prop" data-val="residential"><i class="fas fa-house"></i> Home</button>
+                <button class="tog" data-group="prop" data-val="commercial"><i class="fas fa-building"></i> Business</button>
+              </div>
+            </div>
+            <div class="calc-field">
+              <label>Urgency</label>
+              <div class="tog-grp">
+                <button class="tog active" data-group="urg" data-val="normal">Normal</button>
+                <button class="tog tog-emerg" data-group="urg" data-val="emergency">🚨 Now</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="calc-result" id="calcResult">
+            <div class="result-lbl">Estimated price range</div>
+            <div class="result-val" id="resultVal">—</div>
+            <div class="result-note">Ballpark only — exact quote may vary by access &amp; materials.</div>
+            <button class="reset-btn" id="resetBtn"><i class="fas fa-rotate-left"></i> Calculate Again</button>
+          </div>
+
+          <button class="calc-submit" id="calcBtn"><i class="fas fa-calculator"></i> Calculate My Estimate</button>
+          <a href="#quote" class="calc-submit wa-calc-btn" id="quoteBtn" style="display:none;"><i class="fab fa-whatsapp"></i> Get My Free Exact Quote</a>
+
+          <div class="calc-trust-row">
+            <span><i class="fas fa-shield-halved"></i> PIRB Registered</span>
+            <span><i class="fas fa-tag"></i> No Call-Out Fee</span>
+            <span><i class="fas fa-certificate"></i> Workmanship Guarantee</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+     <!-- ═══ PHOTO STRIP ═══ -->
+<div class="photo-strip">
+  <div class="container">
+    <div class="strip-grid">
+      <div class="strip-box">
+        <img src="assets/Expert Tips for an Easy Faucet Installation.jfif" alt="photo 1"/>
+      </div>
+      <div class="strip-box">
+        <img src="assets/plumbing2.jfif" alt="photo 2"/>
+      </div>
+      <div class="strip-box">
+        <img src="assets/Mechanical Room - Photos & Ideas.jfif" alt="photo 3"/>
+      </div>
+      <div class="strip-box">
+        <img src="assets/Servicio Profesional para Calderas de Gas.jfif" alt="photo 4"/>
+      </div>
+      <div class="strip-box">
+        <img src="assets/download.jfif" alt="photo 5"/>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- ═══ SERVICES ═══ -->
+  <section class="services" id="services">
+    <div class="container services-wrap">
+
+      <!-- LEFT — Service Boxes -->
+      <div class="services-left">
+        <div class="section-tag light">What We Fix</div>
+        <h2 class="section-h light">Every Plumbing<br>Problem. <em style="color: #26A9E0;">Sorted.</em></h2>
+       <div class="services-grid">
+
+  <div class="svc-box reveal">
+    <div class="svc-ico">
+      <img src="assets/icons8-geyser-48.png" alt="icon" style="width:32px; height:32px; object-fit:contain;"/>
+    </div>
+    <h4>Geyser Repairs &amp; Replacement</h4>
+    <p>Same-day repairs and full replacements, including solar. SANS 10254 compliant.</p>
+  </div>
+
+  <div class="svc-box reveal">
+    <div class="svc-ico">
+      <img src="assets/icons8-cracked-pipe-50.png" alt="icon" style="width:32px; height:32px; object-fit:contain;"/>
+    </div>
+    <h4>Burst &amp; Leaking Pipes</h4>
+    <p>30-minute emergency response for burst pipes anywhere in Cape Town.</p>
+  </div>
+
+  <div class="svc-box reveal">
+    <div class="svc-ico">
+      <img src="assets/icons8-plumbing-50.png" alt="icon" style="width:32px; height:32px; object-fit:contain;"/>
+    </div>
+    <h4>Blocked Drains &amp; Toilets</h4>
+    <p>High-pressure hydro-jetting clears blockages completely — not just temporarily.</p>
+  </div>
+
+  <div class="svc-box reveal">
+    <div class="svc-ico">
+      <img src="assets/icons8-magnifying-glass-50 (2).png" alt="icon" style="width:32px; height:32px; object-fit:contain;"/>
+    </div>
+    <h4>Leak Detection</h4>
+    <p>Thermal imaging and acoustic equipment — no unnecessary digging.</p>
+  </div>
+
+  <div class="svc-box reveal">
+    <div class="svc-ico">
+      <img src="assets/icons8-wrench-50.png" alt="icon" style="width:32px; height:32px; object-fit:contain;"/>
+    </div>
+    <h4>Tap, Toilet &amp; Fixture Repairs</h4>
+    <p>Dripping taps and running toilets fixed fast at fair, transparent prices.</p>
+  </div>
+
+  <div class="svc-box reveal">
+    <div class="svc-ico">
+      <img src="assets/icons8-building-50 - Copy (2).png" alt="icon" style="width:32px; height:32px; object-fit:contain;"/>
+    </div>
+    <h4>Commercial Plumbing</h4>
+    <p>Maintenance contracts and after-hours service for businesses of all sizes.</p>
+  </div>
+</div>
+</div>
+
+      <!-- RIGHT — Quote Form -->
+      <div class="services-right" id="quote">
+        <div class="form-card">
+          <div class="form-card-head">
+            <h3>Request a Free Quote</h3>
+            <p>Fill in your details — we'll respond within 30 minutes.</p>
+          </div>
+          <form id="quoteForm" novalidate>
+            <div class="fg">
+              <label>Your Name</label>
+              <input type="text" id="qname" placeholder="John Smith" required/>
+            </div>
+            <div class="fg">
+              <label>WhatsApp Number</label>
+              <input type="tel" id="qphone" placeholder="+27 82 000 0000" required/>
+            </div>
+            <div class="fg">
+              <label>Your Area</label>
+              <input type="text" id="qarea" placeholder="e.g. Claremont, Bellville..."/>
+            </div>
+            <div class="fg">
+              <label>Service Needed</label>
+              <select id="qservice">
+                <option value="" disabled selected>— What can we help with? —</option>
+                <option>Geyser Repair / Replacement</option>
+                <option>Burst / Leaking Pipe</option>
+                <option>Blocked Drain / Toilet</option>
+                <option>Leak Detection</option>
+                <option>Tap / Fixture Repair</option>
+                <option>Commercial Plumbing</option>
+              </select>
+            </div>
+            <div class="fg">
+              <label>Describe the Problem</label>
+              <textarea id="qmsg" rows="3" placeholder="Tell us what's happening..."></textarea>
+            </div>
+            <button type="button" class="form-submit" id="waSubmitBtn">
+              <i class="fab fa-whatsapp"></i> Send WhatsApp
+            </button>
+            <div class="form-note"><i class="fas fa-lock"></i> Your details are private and never shared.</div>
+            <div class="form-msg" id="formMsg"></div>
+          </form>
+          <div class="form-success" id="formSuccess">
+            <div class="success-ico"><i class="fas fa-check"></i></div>
+            <h4>WhatsApp Opened!</h4>
+            <p>Just tap <strong>Send</strong> in WhatsApp — we'll call you back within 30 minutes.<br>For emergencies call <strong>+27 77 251 7253</strong>.</p>
+          </div>
+        </div> 
+      </div>
+    </div>
+  </section>
+
+           <!-- ═══ SERVICE AREAS ═══ -->
+  <section class="areas" id="areas">
+    <div class="container">
+      <div class="section-tag center" style="color: #26A9E0; font-size: 1.5rem;">Our Most Dominant Service Areas</div>
+
+      <div class="areas-grid">
+
+        <div class="area-card reveal" style="background-image: url('assets/northern\ suburbs.jpg'); background-size: cover; background-position: center;">
+          <div class="area-overlay">
+            <h4>Northern Suburbs</h4>
+            <p>Bellville · Parow · Goodwood · Durbanville · Brackenfell</p>
+          </div>
+        </div>
+
+        <div class="area-card reveal" style="background-image: url('assets/southern\ suburbs.jpg'); background-size: cover; background-position: center;">
+          <div class="area-overlay">
+            <h4>Southern Suburbs</h4>
+            <p>Claremont · Wynberg · Constantia · Pinelands · Rondebosch</p>
+          </div>
+        </div>
+
+        <div class="area-card reveal" style="background-image: url('assets/atlantic\ seaboard.jpg'); background-size: cover; background-position: center;">
+          <div class="area-overlay">
+            <h4>Atlantic Seaboard</h4>
+            <p>Sea Point · Green Point · Camps Bay · Blouberg · Milnerton</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  
+      
+          <!-- ═══ TRUST ═══ -->
+<section class="trust" id="trust">
+  <div class="container trust-grid">
+
+    <!-- LEFT — Credentials -->
+    <div class="trust-left reveal">
+      <div class="section-tag">Why Trust Us</div>
+      <h2 class="section-h"><span style="color: #ffffff;">Proof of</span> <em style="color: #26A9E0;">Expertise.</em></h2>
+
+      <div class="cred-list">
+        <div class="cred-item">
+          <div class="cred-ico"><i class="fas fa-certificate"></i></div>
+          <div>
+            <strong>PIRB Registered</strong>
+            <span>Plumbing Industry Registration Board — the official SA body that licenses professional plumbers.</span>
+          </div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-ico"><i class="fas fa-file-shield"></i></div>
+          <div>
+            <strong>COC Issuing Plumber</strong>
+            <span>We issue Certificates of Compliance required by SA law under SANS 10252 &amp; SANS 10254.</span>
+          </div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-ico"><i class="fas fa-shield-halved"></i></div>
+          <div>
+            <strong>Fully Insured — R2M Liability</strong>
+            <span>R2 million general liability cover on all work. You're protected from the moment we arrive.</span>
+          </div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-ico"><i class="fas fa-droplet"></i></div>
+          <div>
+            <strong>City of Cape Town Compliant</strong>
+            <span>All installations comply with Cape Town water bylaws — keeping you legal and your insurance valid.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="trust-values">
+        <p>We believe a plumber should show up on time, tell you the truth about cost, and leave your home cleaner than they found it.</p>
+        <p>What started as a one-truck business has grown into a 30-person team covering all of Cape Town — every technician licensed, background-checked, and trained to the same standard.</p>
+      </div>
+    </div>
+
+    <!-- RIGHT — Reviews + Photos -->
+    <div class="trust-right reveal" id="reviews">
+      <div class="section-tag">What Customers Say</div>
+      <h2 class="section-h">Real Reviews.<br><em>Real People.</em></h2>
+
+      <div class="review-slider" id="reviewSlider">
+        <div class="review-slide active">
+          <div class="review-stars">★★★★★</div>
+          <p>"Called at 11pm for a burst pipe and they were at my house in under 40 minutes. Price was exactly what they quoted. Saving this number forever."</p>
+          <div class="reviewer">
+            <div class="rev-av">SL</div>
+            <div><strong>Sarah L.</strong><small>Homeowner, Constantia</small></div>
+          </div>
+        </div>
+        <div class="review-slide">
+          <div class="review-stars">★★★★★</div>
+          <p>"Used ClearFlo Plumbing for our restaurant for three years. Always on time, always professional, work has never needed to be redone. Total legends."</p>
+          <div class="reviewer">
+            <div class="rev-av">DK</div>
+            <div><strong>David K.</strong><small>Restaurant Owner, De Waterkant</small></div>
+          </div>
+        </div>
+        <div class="review-slide">
+          <div class="review-stars">★★★★★</div>
+          <p>"Hidden leak inside the wall — they found it with a sensor and fixed it same day. Couldn't believe how clean they left everything."</p>
+          <div class="reviewer">
+            <div class="rev-av">MP</div>
+            <div><strong>Maria P.</strong><small>Homeowner, Bellville</small></div>
+          </div>
+        </div>
+        <div class="review-slide">
+          <div class="review-stars">★★★★★</div>
+          <p>"Geyser died on a Sunday morning. ClearFlo Plumbing had a new one installed by 2pm the same day. Fair price, tidy work, explained everything clearly."</p>
+          <div class="reviewer">
+            <div class="rev-av">JN</div>
+            <div><strong>James N.</strong><small>Homeowner, Pinelands</small></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slider-controls">
+        <button class="sl-btn" id="slPrev"><i class="fas fa-arrow-left"></i></button>
+        <div class="sl-dots" id="slDots"></div>
+        <button class="sl-btn" id="slNext"><i class="fas fa-arrow-right"></i></button>
+      </div>
+
+      <div class="rating-row">
+        <div class="rating-big">4.9</div>
+        <div>
+          <div class="review-stars big-stars">★★★★★</div>
+          <div class="rating-sub">Based on 200+ Google reviews</div>
+        </div>
+      </div>
+
+            <!-- Photos now inside right column -->
+         <div class="trust-photos">
+           <div class="trust-photo-box">
+             <img src="assets/plumbing certificate.jpg" alt="On-Site Team"/>
+          </div>
+          <div class="trust-photo-box">
+             <img src="assets/plumbing group.jpg" alt="Fleet Ready"/>
+           </div>
+         </div>
+
+     </div>
+    <!-- end trust-right -->
+
+  </div>
+</section>
+ 
+
+  <!-- ═══ CONTACT ═══ -->
+  <section class="contact" id="contact">
+    <div class="container contact-grid">
+
+      <!-- LEFT — Map -->
+      <div class="contact-left reveal">
+        <div class="section-tag">Find Us</div>
+        <h2 class="section-h">Our <em>Location.</em></h2>
+        <p class="contact-addr"><i class="fas fa-map-marker-alt"></i> 56 Bree Street, Cape Town, 8001</p>
+        <div class="map-wrap">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3310.4!2d18.4191!3d-33.9225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc675e9f04e24f%3A0x0!2s56+Bree+St%2C+Cape+Town!5e0!3m2!1sen!2sza!4v1710000000000"
+            width="100%" height="340" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade" title="ClearFlo location">
+          </iframe>
+        </div>
+      </div>
+
+      <!-- RIGHT — Contact Details -->
+      <div class="contact-right reveal">
+        <div class="section-tag">Get In Touch</div>
+        <h2 class="section-h">Contact <em>Details.</em></h2>
+
+        <div class="contact-list">
+          <div class="contact-item">
+            <div class="ci-ico wa"><i class="fab fa-whatsapp"></i></div>
+            <div>
+              <div class="ci-lbl">WhatsApp (Fastest)</div>
+              <a href="https://wa.me/27772517253" class="ci-val" target="_blank">+27 77 251 7253</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-ico"><i class="fas fa-phone"></i></div>
+            <div>
+              <div class="ci-lbl">Call Us</div>
+              <a href="tel:+27772517253" class="ci-val">+27 77 251 7253</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-ico"><i class="fas fa-envelope"></i></div>
+            <div>
+              <div class="ci-lbl">Email</div>
+              <a href="mailto:hello@clearfloplumbing.co.za" class="ci-val">hello@clearfloplumbing.co.za</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-ico"><i class="fas fa-map-marker-alt"></i></div>
+            <div>
+              <div class="ci-lbl">Service Area</div>
+              <div class="ci-val">Cape Town &amp; all surrounding suburbs</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-ico"><i class="fas fa-clock"></i></div>
+            <div>
+              <div class="ci-lbl">Business Hours</div>
+              <div class="ci-val">
+                Mon–Fri: 7am – 6pm<br>
+                Saturday: 8am – 2pm<br>
+                <span class="emerg-label"><i class="fas fa-bolt"></i> Emergencies: 24/7</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer>
+    <div class="container footer-inner">
+      <p class="footer-copy">© <span id="year"></span> ClearFlo Plumbing. PIRB Registered &amp; Licensed. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#services">Services</a>
+        <a href="#areas">Areas</a>
+        <a href="#trust">Trust</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══ WHATSAPP FLOAT ═══ -->
+  <a href="https://wa.me/27772517253?text=Hi%20ClearFlo!%20I%20need%20a%20plumber..." class="wa-float" target="_blank" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="float-tip">Chat on WhatsApp</span>
+  </a>
+
+  <!-- ═══ CHATBOT FLOAT ═══ -->
+  <div id="fm"></div>
+
+  <script src="script.js"></script>
+  <script src="chatbot.js"></script>
+</body>
+</html>
