@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (statsEl) countObs.observe(statsEl);
 
   // ── Review Slider ──
-  const slides       = document.querySelectorAll('.review-slide');
+  const slides        = document.querySelectorAll('.review-slide');
   const dotsContainer = document.getElementById('slDots');
   let current = 0;
 
@@ -117,16 +117,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ── Price Calculator ──
   const PRICES = {
-    geyser_repair:  { normal:[800,1800],   soon:[800,1800],   emergency:[1500,2500]  },
-    geyser_replace: { normal:[3500,6500],  soon:[3500,6500],  emergency:[5000,8500]  },
-    burst_pipe:     { normal:[600,1400],   soon:[600,1400],   emergency:[1200,2500]  },
-    blocked_drain:  { normal:[350,900],    soon:[350,900],    emergency:[700,1500]   },
-    blocked_toilet: { normal:[300,700],    soon:[300,700],    emergency:[600,1200]   },
-    leak_detect:    { normal:[800,1600],   soon:[800,1600],   emergency:[1500,2800]  },
-    tap_repair:     { normal:[200,600],    soon:[200,600],    emergency:[400,1000]   },
-    toilet_repair:  { normal:[300,800],    soon:[300,800],    emergency:[600,1400]   },
-    installation:   { normal:[1500,5000],  soon:[1500,5000],  emergency:[3000,8000]  },
-    commercial:     { normal:[2000,8000],  soon:[2000,8000],  emergency:[4000,12000] },
+    geyser_repair:  { normal:[800,1800],   emergency:[1500,2500]  },
+    geyser_replace: { normal:[3500,6500],  emergency:[5000,8500]  },
+    burst_pipe:     { normal:[600,1400],   emergency:[1200,2500]  },
+    blocked_drain:  { normal:[350,900],    emergency:[700,1500]   },
+    blocked_toilet: { normal:[300,700],    emergency:[600,1200]   },
+    leak_detect:    { normal:[800,1600],   emergency:[1500,2800]  },
+    tap_repair:     { normal:[200,600],    emergency:[400,1000]   },
+    toilet_repair:  { normal:[300,800],    emergency:[600,1400]   },
+    installation:   { normal:[1500,5000],  emergency:[3000,8000]  },
+    commercial:     { normal:[2000,8000],  emergency:[4000,12000] },
   };
 
   const COMM_MULT = 1.4;
@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => sel.style.borderColor = '', 1500);
       return;
     }
-    let [lo, hi] = PRICES[job][urgency];
+    let [lo, hi] = PRICES[job][urgency] || PRICES[job]['normal'];
     if (propType === 'commercial') {
       lo = Math.round(lo * COMM_MULT);
       hi = Math.round(hi * COMM_MULT);
@@ -180,19 +180,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   resetBtn?.addEventListener('click', resetCalc);
 
-  // ── WhatsApp Form Submit ──
+  // ── Quote Form → Make.com Webhook ──
+  const WEBHOOK     = 'https://hook.eu1.make.com/8pdpfxku9x74mcltbv0worxfhjb2lm1a';
   const quoteForm   = document.getElementById('quoteForm');
   const formSuccess = document.getElementById('formSuccess');
   const formMsg     = document.getElementById('formMsg');
-  const BUSINESS_WA = '27772517253';
+  const submitBtn   = document.getElementById('waSubmitBtn');
 
-  document.getElementById('waSubmitBtn')?.addEventListener('click', () => {
+  submitBtn?.addEventListener('click', async () => {
     const name    = document.getElementById('qname').value.trim();
     const phone   = document.getElementById('qphone').value.trim();
     const area    = document.getElementById('qarea').value.trim();
     const service = document.getElementById('qservice').value.trim();
-    const msg     = document.getElementById('qmsg').value.trim();
+    const message = document.getElementById('qmsg').value.trim();
 
+    // Validation
     if (!name || !phone) {
       if (formMsg) {
         formMsg.textContent = 'Please enter your name and WhatsApp number.';
@@ -205,23 +207,39 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    const text = [
-      `Hi ClearFlo here! 👋`,
-      ``,
-      `📋 *New Quote Request*`,
-      ``,
-      `👤 *Name:* ${name}`,
-      `📱 *WhatsApp:* ${phone}`,
-      `📍 *Area:* ${area || 'Not specified'}`,
-      `🔧 *Service:* ${service || 'Not specified'}`,
-      `📝 *Details:* ${msg || 'Not specified'}`,
-      ``,
-      `Please send me a free quote! 🙏`
-    ].join('\n');
+    // Loading state
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+    if (formMsg) formMsg.textContent = '';
 
-    window.open(`https://wa.me/${BUSINESS_WA}?text=${encodeURIComponent(text)}`, '_blank');
-    if (quoteForm)   quoteForm.style.display = 'none';
-    if (formSuccess) formSuccess.classList.add('show');
+    try {
+      await fetch(WEBHOOK, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          phone,
+          area:         area    || 'Not specified',
+          service:      service || 'Not specified',
+          message:      message || 'Not specified',
+          submitted_at: new Date().toISOString(),
+          source:       'ClearFlo Website Form'
+        })
+      });
+
+      // Success
+      if (quoteForm)   quoteForm.style.display = 'none';
+      if (formSuccess) formSuccess.classList.add('show');
+
+    } catch (err) {
+      // Error — reset button
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<i class="fab fa-whatsapp"></i> Send WhatsApp';
+      if (formMsg) {
+        formMsg.textContent = 'Something went wrong. Please try again or WhatsApp us directly.';
+        formMsg.style.color = '#e53e3e';
+      }
+    }
   });
 
   // ── Active nav highlight ──
@@ -241,70 +259,5 @@ document.addEventListener('DOMContentLoaded', () => {
   const navStyle = document.createElement('style');
   navStyle.textContent = '.nav-links a.nav-active { color: #fff !important; }';
   document.head.appendChild(navStyle);
-
-  // ── Logo upload ──
-  const logoUploadArea = document.getElementById('logoUploadArea');
-  const logoInput      = document.getElementById('logoInput');
-  const logoImg        = document.getElementById('logoImg');
-
-  if (logoUploadArea && logoInput) {
-    logoUploadArea.addEventListener('click', () => logoInput.click());
-    logoInput.addEventListener('change', e => {
-      const file = e.target.files[0];
-      if (!file) return;
-      const url = URL.createObjectURL(file);
-      logoImg.src = url;
-      logoImg.style.display = 'block';
-      logoUploadArea.querySelector('i').style.display = 'none';
-    });
-  }
-
-  // ── Hero background upload ──
-  const heroBgUpload = document.getElementById('heroBgUpload');
-  const heroBgInput  = document.getElementById('heroBgInput');
-  const heroBg       = document.getElementById('heroBg');
-
-  if (heroBgUpload && heroBgInput) {
-    heroBgUpload.addEventListener('click', () => heroBgInput.click());
-    heroBgInput.addEventListener('change', e => {
-      const file = e.target.files[0];
-      if (!file) return;
-      const url = URL.createObjectURL(file);
-      heroBg.style.backgroundImage = `url('${url}')`;
-      heroBg.style.backgroundSize   = 'cover';
-      heroBg.style.backgroundPosition = 'center';
-      heroBgUpload.classList.add('has-image');
-    });
-  }
-
-  // ── Area photo uploads ──
-  document.querySelectorAll('.area-photo-circle').forEach(circle => {
-    const input = circle.querySelector('.area-photo-input');
-    const img   = circle.querySelector('.area-photo-img');
-    const icon  = circle.querySelector('i');
-    if (!input || !img) return;
-    input.addEventListener('change', e => {
-      const file = e.target.files[0];
-      if (!file) return;
-      img.src = URL.createObjectURL(file);
-      img.style.display = 'block';
-      if (icon) icon.style.display = 'none';
-    });
-  });
-
-  // ── Trust photo uploads ──
-  document.querySelectorAll('.trust-photo-box').forEach(box => {
-    const input = box.querySelector('.trust-photo-input');
-    const img   = box.querySelector('.trust-photo-img');
-    if (!input || !img) return;
-    input.addEventListener('change', e => {
-      const file = e.target.files[0];
-      if (!file) return;
-      img.src = URL.createObjectURL(file);
-      img.style.display = 'block';
-      box.querySelector('i').style.display   = 'none';
-      box.querySelector('span').style.display = 'none';
-    });
-  });
 
 });
